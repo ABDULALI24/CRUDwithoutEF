@@ -1,0 +1,67 @@
+﻿Book Add or Edit S.P
+
+CREATE PROCEDURE [dbo].[BookAddOrEdit] 
+	@BookID INT ,
+	@Title varchar(50),
+	@Author varchar(50),
+	@Price INT
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+   if @BookID = 0 
+   BEGIN
+     INSERT INTO Books(Title,Author,Price)
+	 VALUES (@Title,@Author,@Price)
+	 END
+ELSE
+    BEGIN 
+	UPDATE Books
+	SET
+	Title = @Title,
+	Author = @Author,
+	Price=@Price
+	WHERE BookID = @BookID
+	END
+END
+GO
+
+----------------------------------------------------------------------------------------------
+Get Book By Id S.P
+
+CREATE PROCEDURE [dbo].[BookViewByID]
+  @BookID INT
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT * FROM Books
+	WHERE BookID = @BookID
+END
+----------------------------------------------------------------------------------------------
+
+Get List of Book 
+CREATE PROCEDURE [dbo].[BookViewByID]
+  @BookID INT
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT * FROM Books
+	
+END
+
+----------------------------------------------------------------------------------------------
+Delete Book S.P
+
+CREATE PROCEDURE [dbo].[BookViewByID]
+  @BookID INT
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	DELETE Books 
+	WHERE BookID = @BookID
+	
+END
